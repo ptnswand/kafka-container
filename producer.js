@@ -2,7 +2,7 @@ const { Kafka } = require("kafkajs");
 
 const kafka = new Kafka({
   clientId: "date-producer",
-  brokers: ["localhost:9092"],
+  brokers: ["localhost:9090", "localhost:9091", "localhost:9092"],
 });
 
 const producer = kafka.producer();
@@ -10,14 +10,14 @@ const producer = kafka.producer();
 const runProducer = async () => {
   await producer.connect();
 
-  // Send messages to Kafka topic 'ExampleTopic' every 5 second
+  // Send messages to Kafka topic 'multi-partition-topic' every 5 second
   setInterval(async () => {
     try {
       const message = {
         value: `Message sent at ${new Date().toISOString().substring(0, 19)}`,
       };
       await producer.send({
-        topic: "ExampleTopic",
+        topic: "multi-partition-topic",
         messages: [message],
       });
       console.log("Produced message:", message.value);
