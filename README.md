@@ -1,4 +1,4 @@
-# Commands
+# Running Multiple Kafak Container Using Kraft
 > Don't foget to change your `CLUSTER_ID: 'g3NEraTtedKafKAkrAFTiD'` to a new value!
 
 **Prerequisites**
@@ -30,14 +30,6 @@ docker exec -it kafka /bin/kafka-topics --create --topic multi-partition-topic -
 ```
 After you've created a topic with multiple partition each partition will be destribute on `kafka`, `kafka1`, and `kafka2`.
 
-**TIP**
-you can run `producer.js` and `consumer.js` after create a topic by the following way:
-```js
-npm install
-node producer.js
-node consumer.js
-```
-
 The command to list Kafka topics involves using the kafka-topics.sh script with the --list option such as `kafka-topics.sh --list --bootstrap-server <broker_list>`.
 - `--list`: Lists all available topics.
 
@@ -55,6 +47,16 @@ docker exec -it kafka /bin/kafka-topics --describe --topic multi-partition-topic
 
 ## Producer & Consumer Kafka Topics
 In Apache Kafka, producers are responsible for sending messages to topics, while consumers read and process these messages from topics. Below are examples demonstrating the use of producers and consumers for a Kafka topic.
+
+**TIP**
+you can run `producer.js` and `consumer.js` after create a topic by the following way:
+```js
+npm install
+node producer.js
+// wait 1 minute before run consumer.js
+// to see more clear example
+node consumer.js
+```
 
 To produce messages to a Kafka topic named "multi-partition-topic" you can use the Kafka console producer.
 ```bash
